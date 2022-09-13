@@ -1,6 +1,4 @@
-const _ = require('lodash');
-
-const descriptions = [
+const DESCRIPTIONS = [
   'Пляж',
   'Дорожный указатель',
   'Озеро',
@@ -28,7 +26,7 @@ const descriptions = [
   'Внедорожник',
 ];
 
-const names = [
+const NAMES = [
   'Арём',
   'Михаил',
   'Александр',
@@ -37,7 +35,7 @@ const names = [
   'Алиса',
 ];
 
-const messages = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё не плохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -46,29 +44,59 @@ const messages = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент.',
 ];
 
-const getRandomArrayIndex = (array) => array[_.random(0, array.length - 1)];
-const getRandomPhoto = _.random(1, 25);
+// КОММЕНТИРИИ
+const MIN_ID_COMMENT = 0;
+const MAX_ID_COMMENT = 200;
+const MIN_NAMBER_AVATAR = 1;
+const MAX_NAMBER_AVATAR = 6;
+const NAMBER_OF_COMMENTS = 3;
 
-// Комментарии
+// КАРТОЧКИ
+const MIN_NAMBER_LIKES = 15;
+const MAX_NAMBER_LIKES = 200;
+const NAMBER_OF_CARDS = 25;
+
+
+// ПОЛУЧИТЬ РАНДОМНОЕ ЧИСЛО
+const getRandomIntInclusive = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+// ПОЛУЧИТЬ РАНДОМНЫЙ ЭЛЕМЕНТ МАССИВА
+const getRandomArrayIndex = (array) => array[getRandomIntInclusive(0, array.length - 1)];
+
+// ПЕРЕМЕШАТЬ МАССИВ
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+//  СОЗДАНИЕ РАНДОМНОГО КОММЕНТАРИЯ
 const createComment = () => ({
-  id: _.random(1, 200),
-  avatar: `img/avatar-${_.random(1, 6)}.svg`,
-  message: getRandomArrayIndex(messages),
-  name: getRandomArrayIndex(names),
+  id: getRandomIntInclusive(MIN_ID_COMMENT, MAX_ID_COMMENT),
+  avatar: `img/avatar-${getRandomIntInclusive(MIN_NAMBER_AVATAR, MAX_NAMBER_AVATAR)}.svg`,
+  message: getRandomArrayIndex(MESSAGES),
+  name: getRandomArrayIndex(NAMES),
 });
 
-const comments = new Array(3).fill(null).map(() => createComment());
+const comments = new Array(NAMBER_OF_COMMENTS).fill(null).map(() => createComment());
 
-//Карточка
-const createCard = () => ({
-  id: _.random(1, 25),
-  url: `photos/${getRandomPhoto}.jpg`,
-  description: descriptions[getRandomPhoto],
-  likes: _.random(15, 200),
+
+//  СОЗДАНИЕ КАРТОЧКИ
+const createCard = (index = 1) => ({
+  id: index + 1,
+  url: `photos/${index + 1}.jpg`,
+  description: DESCRIPTIONS[index + 1],
+  likes: getRandomIntInclusive(MIN_NAMBER_LIKES, MAX_NAMBER_LIKES),
   comments,
 });
 
-const card = new Array(25).fill(null).map(() => createCard());
+const cards = new Array(NAMBER_OF_CARDS).fill(null).map((current, index) => createCard(index));
+const shuffledCards = shuffleArray(cards);
 
-console.log(comments);
-console.log(card);
+console.log(shuffledCards);
