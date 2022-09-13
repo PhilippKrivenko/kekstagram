@@ -27,7 +27,7 @@ const DESCRIPTIONS = [
 ];
 
 const NAMES = [
-  'Арём',
+  'Артём',
   'Михаил',
   'Александр',
   'Константин',
@@ -45,23 +45,21 @@ const MESSAGES = [
 ];
 
 // КОММЕНТИРИИ
-const MIN_ID_COMMENT = 0;
-const MAX_ID_COMMENT = 200;
-const MIN_NAMBER_AVATAR = 1;
-const MAX_NAMBER_AVATAR = 6;
+const MIN_NUMBER_AVATAR = 1;
+const MAX_NUMBER_AVATAR = 6;
 const NAMBER_OF_COMMENTS = 3;
 
 // КАРТОЧКИ
-const MIN_NAMBER_LIKES = 15;
-const MAX_NAMBER_LIKES = 200;
+const MIN_NUMBER_LIKES = 15;
+const MAX_NUMBER_LIKES = 200;
 const NAMBER_OF_CARDS = 25;
 
 
 // ПОЛУЧИТЬ РАНДОМНОЕ ЧИСЛО
 const getRandomIntInclusive = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  const minRnd = Math.ceil(min);
+  const maxRnd = Math.floor(max);
+  return Math.floor(Math.random() * (maxRnd - minRnd + 1)) + minRnd;
 };
 
 // ПОЛУЧИТЬ РАНДОМНЫЙ ЭЛЕМЕНТ МАССИВА
@@ -77,26 +75,25 @@ const shuffleArray = (array) => {
 };
 
 //  СОЗДАНИЕ РАНДОМНОГО КОММЕНТАРИЯ
-const createComment = () => ({
-  id: getRandomIntInclusive(MIN_ID_COMMENT, MAX_ID_COMMENT),
-  avatar: `img/avatar-${getRandomIntInclusive(MIN_NAMBER_AVATAR, MAX_NAMBER_AVATAR)}.svg`,
+const createComment = (index) => ({
+  id: index + 1,
+  avatar: `img/avatar-${getRandomIntInclusive(MIN_NUMBER_AVATAR, MAX_NUMBER_AVATAR)}.svg`,
   message: getRandomArrayIndex(MESSAGES),
   name: getRandomArrayIndex(NAMES),
 });
 
-const comments = new Array(NAMBER_OF_COMMENTS).fill(null).map(() => createComment());
+const comments = new Array(NAMBER_OF_COMMENTS).fill(null).map((current, index) => createComment(index));
 
 
 //  СОЗДАНИЕ КАРТОЧКИ
-const createCard = (index = 1) => ({
+const createCard = (index) => ({
   id: index + 1,
   url: `photos/${index + 1}.jpg`,
   description: DESCRIPTIONS[index + 1],
-  likes: getRandomIntInclusive(MIN_NAMBER_LIKES, MAX_NAMBER_LIKES),
+  likes: getRandomIntInclusive(MIN_NUMBER_LIKES, MAX_NUMBER_LIKES),
   comments,
 });
 
 const cards = new Array(NAMBER_OF_CARDS).fill(null).map((current, index) => createCard(index));
 const shuffledCards = shuffleArray(cards);
 
-console.log(shuffledCards);
