@@ -41,9 +41,9 @@ const getRandomNamberOfComments = () => {
 }
 
 const createUserCard = (index) => ({
-  id: index + 1,
+  id: index,
   url: `photos/${index + 1}.jpg`,
-  description: DESCRIPTIONS[index + 1],
+  description: DESCRIPTIONS[index],
   likes: getRandomIntInclusive(MIN_NUMBER_LIKES, MAX_NUMBER_LIKES),
   comments: getRandomNamberOfComments(),
 });
