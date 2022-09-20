@@ -1,2 +1,1 @@
-import './comments.mjs';
-import './cards.mjs';
+import './user-cards.mjs';
