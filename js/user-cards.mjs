@@ -1,17 +1,16 @@
 import { createUserCard } from "./create-random-user-card.mjs";
 import { shuffleArray } from "./_utils.mjs";
 
-const NAMBER_OF_CARDS = 25;
+const NUMBER_OF_CARDS = 25;
 
-const userCards = new Array(NAMBER_OF_CARDS).fill(null).map((current, index) => createUserCard(index));
-const shuffledUserCards = shuffleArray(userCards);
+const userCards = shuffleArray(new Array(NUMBER_OF_CARDS).fill(null).map((current, index) => createUserCard(index)));
 
 const userListElement = document.querySelector('.pictures');
 const userCardTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 const userListFragment = document.createDocumentFragment();
 
-shuffledUserCards.forEach(({ url, description, likes, comments }) => {
+userCards.forEach(({ url, description, likes, comments }) => {
   const userElement = userCardTemplate.cloneNode(true);
 
   userElement.querySelector('.picture__img').src = url;
