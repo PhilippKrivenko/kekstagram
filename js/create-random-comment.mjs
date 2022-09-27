@@ -20,7 +20,6 @@ const MESSAGES = [
 
 const MIN_NUMBER_AVATAR = 1;
 const MAX_NUMBER_AVATAR = 6;
-const NAMBER_OF_COMMENTS = 3;
 
 const createComment = (index) => ({
   id: index + 1,
@@ -29,6 +28,4 @@ const createComment = (index) => ({
   name: getRandomArrayIndex(NAMES),
 });
 
-const comments = new Array(NAMBER_OF_COMMENTS).fill(null).map((current, index) => createComment(index));
-
-export {comments};
+export {createComment};

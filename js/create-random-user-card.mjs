@@ -1,5 +1,5 @@
-import { getRandomIntInclusive, shuffleArray } from './_utils.mjs';
-import { comments } from './comments.mjs';
+import { getRandomIntInclusive } from './_utils.mjs';
+import { createComment } from './create-random-comment.mjs';
 
 const DESCRIPTIONS = [
   'Пляж',
@@ -31,15 +31,21 @@ const DESCRIPTIONS = [
 
 const MIN_NUMBER_LIKES = 15;
 const MAX_NUMBER_LIKES = 200;
-const NAMBER_OF_CARDS = 25;
+const MIN_NUMBER_COMMENTS = 1;
+const MAX_NUMBER_COMMENTS = 20;
 
-const createCard = (index) => ({
-  id: index + 1,
+
+const getRandomNamberOfComments = () => {
+  const comments = new Array(getRandomIntInclusive(MIN_NUMBER_COMMENTS, MAX_NUMBER_COMMENTS)).fill(null).map((current, index) => createComment(index));
+  return comments
+}
+
+const createUserCard = (index) => ({
+  id: index,
   url: `photos/${index + 1}.jpg`,
-  description: DESCRIPTIONS[index + 1],
+  description: DESCRIPTIONS[index],
   likes: getRandomIntInclusive(MIN_NUMBER_LIKES, MAX_NUMBER_LIKES),
-  comments,
+  comments: getRandomNamberOfComments(),
 });
 
-const cards = new Array(NAMBER_OF_CARDS).fill(null).map((current, index) => createCard(index));
-const shuffledCards = shuffleArray(cards);
+export {createUserCard};
