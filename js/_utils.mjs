@@ -17,4 +17,13 @@ const shuffleArray = (array) => {
   return array;
 };
 
-export {getRandomArrayIndex, getRandomIntInclusive, shuffleArray};
+// ПРОВЕРКА НА СОБЫТИЕ
+const isEscEvent = (evt) => {
+  return evt.key === ('Escape' || 'Esc');
+}
+
+const isEnterEvent = (evt) => {
+  return evt.key === 'Enter';
+}
+
+export {getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isEscEvent, isEnterEvent};

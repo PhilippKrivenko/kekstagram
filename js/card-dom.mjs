@@ -3,7 +3,9 @@ import { shuffleArray } from "./_utils.mjs";
 
 const NUMBER_OF_CARDS = 25;
 
-const userCards = shuffleArray(new Array(NUMBER_OF_CARDS).fill(null).map((current, index) => createUserCard(index)));
+const userCards = (shuffleArray(new Array(NUMBER_OF_CARDS)
+  .fill(null)
+  .map((current, index) => createUserCard(index))));
 
 const userListElement = document.querySelector('.pictures');
 const userCardTemplate = document.querySelector('#picture').content.querySelector('.picture');
