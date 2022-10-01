@@ -1,42 +1,47 @@
-import { isEnterEvent, isEscEvent } from "./_utils.mjs";
+import { isPressKey } from "./_utils.mjs";
 
 const cardModalElement = document.querySelector('.big-picture');
 const cardModalOpenElements = document.querySelectorAll('.picture');
 const cardModalCloseElement = document.querySelector('.big-picture__cancel');
 
 const onPopupEscPress = (evt) => {
-  if (isEscEvent(evt)) {
-    evt.preventDefault();
+  evt.preventDefault();
+  if (isPressKey(evt, 'Escape') || isPressKey(evt, 'Esc')) {
     cardModalElement.classList.add('hidden');
   }
 }
 
-const openCardModal = () => {
+const onCloseCardModalEvent = (evt) => {
+  if (isPressKey(evt, 'Enter')) {
+    onCloseCardModal()
+  }
+};
+
+const onOpenCardModal = () => {
   cardModalElement.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress)
+
+  cardModalCloseElement.addEventListener('click', onCloseCardModal);
+
+  cardModalCloseElement.addEventListener('keydown', onCloseCardModalEvent);
 }
 
-const closeCardModal = () => {
+const onCloseCardModal = () => {
   cardModalElement.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress)
+
+  cardModalCloseElement.removeEventListener('click', onCloseCardModal);
+
+  cardModalCloseElement.removeEventListener('keydown', onCloseCardModalEvent);
 }
 
 cardModalOpenElements.forEach((elem) => {
-  elem.addEventListener('click', openCardModal);
-})
+  elem.addEventListener('click', onOpenCardModal);
 
-cardModalOpenElements.forEach((elem) => {
   elem.addEventListener('keydown', (evt) => {
-    if (isEnterEvent(evt)) {
-      openCardModal()
+    if (isPressKey(evt, 'Enter')) {
+      onOpenCardModal()
     }
   });
 })
 
-cardModalCloseElement.addEventListener('click', closeCardModal);
-
-cardModalCloseElement.addEventListener('keydown', (evt) => {
-  if (isEnterEvent(evt)) {
-    closeCardModal()
-  }
-});
