@@ -9,11 +9,13 @@ const userCardTemplate = document.querySelector('#picture').content.querySelecto
 
 const userListFragment = document.createDocumentFragment();
 
-userCards.forEach(({ url, description, likes, comments }) => {
+userCards.forEach(({ url, description, likes, comments }, index) => {
   const userElement = userCardTemplate.cloneNode(true);
+  const userElementImg =  userElement.querySelector('.picture__img');
+  userElementImg.dataset.id = index;
 
-  userElement.querySelector('.picture__img').src = url;
-  userElement.querySelector('.picture__img').alt = description;
+  userElementImg.src = url;
+  userElementImg.alt = description;
   userElement.querySelector('.picture__likes').textContent = likes;
   userElement.querySelector('.picture__comments').textContent = comments.length;
 
@@ -21,3 +23,5 @@ userCards.forEach(({ url, description, likes, comments }) => {
 })
 
 userListElement.appendChild(userListFragment);
+
+export {userCards};

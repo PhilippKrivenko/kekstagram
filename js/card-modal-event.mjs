@@ -1,4 +1,7 @@
+
 import { isPressKey } from "./_utils.mjs";
+import { userCards } from "./card-dom.mjs";
+import { createCardModal } from "./card-modal-dom.mjs";
 
 const cardModalOpenList = document.querySelector('.pictures');
 const cardModalElement = document.querySelector('.big-picture');
@@ -40,12 +43,13 @@ const onCloseCardModal = () => {
 
 cardModalOpenList.addEventListener('click', (evt) => {
   if (evt.target.closest('.picture__img')) {
+    createCardModal(userCards[evt.target.dataset.id]);
     onOpenCardModal();
   }
 })
 
 cardModalOpenList.addEventListener('keydown', (evt) => {
-  if (isPressKey(evt, 'Enter') && evt.target.closest('.picture')) {
+  if (isPressKey(evt, 'Enter') && evt.target.closest('.picture__img')) {
     onOpenCardModal();
   }
 })
