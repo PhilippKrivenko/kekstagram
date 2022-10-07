@@ -17,4 +17,6 @@ const shuffleArray = (array) => {
   return array;
 };
 
-export {getRandomArrayIndex, getRandomIntInclusive, shuffleArray};
+const isPressKey = (evt, pressKey) => evt.key === pressKey;
+
+export { getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isPressKey };
