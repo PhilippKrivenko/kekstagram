@@ -34,12 +34,13 @@ const MAX_NUMBER_LIKES = 200;
 const MIN_NUMBER_COMMENTS = 1;
 const MAX_NUMBER_COMMENTS = 20;
 
-
+// СОЗДАТЬ РАНДОМНОЕ ЧИСЛО КОММЕНТАРИЕВ
 const getRandomNamberOfComments = () => {
   const comments = new Array(getRandomIntInclusive(MIN_NUMBER_COMMENTS, MAX_NUMBER_COMMENTS)).fill(null).map((current, index) => createComment(index));
   return comments
 }
 
+// СОЗДАТЬ РАНДОМНУЮ КАРТОЧКУ ИЗОБРАЖЕНИЯ
 const createUserCard = (index) => ({
   id: index,
   url: `photos/${index + 1}.jpg`,
