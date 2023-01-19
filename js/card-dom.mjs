@@ -1,3 +1,4 @@
+// ЗАПОЛНЯЕМ ГЛАВНУЮ СТРАНИЦУ КАРТОЧКАМИ
 import { createUserCard } from "./create-random-user-card.mjs";
 import { shuffleArray } from "./_utils.mjs";
 
