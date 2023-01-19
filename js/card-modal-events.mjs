@@ -8,14 +8,14 @@ const cardModalElement = document.querySelector('.big-picture');
 const cardModalCloseElement = document.querySelector('.big-picture__cancel');
 
 const onPopupEscPress = (evt) => {
-  if (isPressKey(evt, PRESS_KEY.Escape) || isPressKey(evt, PRESS_KEY.Esc)) {
+  if (isPressKey(evt, PRESS_KEY.ESCAPE) || isPressKey(evt, PRESS_KEY.ESC)) {
     cardModalElement.classList.remove('modal-open');
     cardModalElement.classList.add('hidden');
   }
 }
 
 const onCloseCardModalEvent = (evt) => {
-  if (isPressKey(evt, PRESS_KEY.Enter)) {
+  if (isPressKey(evt, PRESS_KEY.ENTER)) {
     onCloseCardModal()
   }
 };
@@ -49,7 +49,7 @@ cardModalOpenList.addEventListener('click', (evt) => {
 })
 
 cardModalOpenList.addEventListener('keydown', (evt) => {
-  if (isPressKey(evt, PRESS_KEY.Enter) && evt.target.closest('.picture__img')) {
+  if (isPressKey(evt, PRESS_KEY.ENTER) && evt.target.closest('.picture__img')) {
     createCardModal(userCards[evt.target.dataset.id]);
     onOpenCardModal();
   }

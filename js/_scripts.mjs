@@ -4,9 +4,9 @@ import './card-modal-events.mjs';
 import './img-edit-form-events.mjs'
 
 const PRESS_KEY = {
-  Enter: 'Enter',
-  Esc: 'Esc',
-  Escape: 'Escape',
+  ENTER: 'Enter',
+  ESC: 'Esc',
+  ESCAPE: 'Escape',
 };
 
 export { PRESS_KEY };
