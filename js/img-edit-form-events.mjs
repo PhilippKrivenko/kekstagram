@@ -1,5 +1,4 @@
-import { isPressKey } from "./_utils.mjs";
-import { PressKey } from "./_scripts.mjs";
+import { isPressKey, PressKey } from "./_utils.mjs";
 
 // ФОРМА РЕДАКТИРОВАНИЯ ИЗОБРАЖЕНИЯ
 const imgEditForm = document.querySelector('.img-upload__overlay');

@@ -20,4 +20,10 @@ const shuffleArray = (array) => {
 // ПРОВЕРКА НА НАЖАТИЕ КЛАВИШИ
 const isPressKey = (evt, pressKey) => evt.key === pressKey;
 
-export { getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isPressKey };
+const PressKey = {
+  ENTER: 'Enter',
+  ESC: 'Esc',
+  ESCAPE: 'Escape',
+};
+
+export { getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isPressKey, PressKey };

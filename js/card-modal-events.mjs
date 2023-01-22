@@ -1,7 +1,6 @@
-import { isPressKey } from "./_utils.mjs";
-import { userCards } from "./card-dom.mjs";
+import { isPressKey, PressKey } from "./_utils.mjs";
+import { userCards } from "./card-list-dom.mjs";
 import { createCardModal } from "./card-modal-dom.mjs";
-import { PressKey } from "./_scripts.mjs";
 
 // КОНТЕЙНЕР ДЛЯ КАРТОЧЕК
 const cardModalOpenList = document.querySelector('.pictures');
@@ -13,8 +12,8 @@ const cardModalCloseElement = document.querySelector('.big-picture__cancel');
 // ОБРАБОТЧИК НА DOCUMENT ДЛЯ КАРТОЧКИ С КЛАВИАТУРЫ ЧЕРЕЗ ESC
 const onPopupEscPress = (evt) => {
   if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESC)) {
-    cardModalElement.classList.remove('modal-open');
     cardModalElement.classList.add('hidden');
+    cardModalElement.classList.remove('modal-open');
   }
 }
 
@@ -27,7 +26,7 @@ const onCloseCardModalEvent = (evt) => {
 
 // ОБРАБОТЧИК ОТКРЫТИЯ КАРТОЧКИ
 const onOpenCardModal = () => {
-  cardModalCloseElement.focus();
+  // cardModalCloseElement.focus();
   cardModalElement.classList.remove('hidden');
   cardModalElement.classList.add('modal-open');
   document.addEventListener('keydown', onPopupEscPress)
@@ -39,8 +38,8 @@ const onOpenCardModal = () => {
 
 // ОБРАБОТЧИК ЗАКРЫТИЯ КАРТОЧКИ
 const onCloseCardModal = () => {
-  cardModalElement.classList.remove('modal-open');
   cardModalElement.classList.add('hidden');
+  cardModalElement.classList.remove('modal-open');
   document.removeEventListener('keydown', onPopupEscPress)
 
   cardModalCloseElement.removeEventListener('click', onCloseCardModal);
