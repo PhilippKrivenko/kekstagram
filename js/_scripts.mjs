@@ -3,10 +3,10 @@ import './card-modal-dom.mjs';
 import './card-modal-events.mjs';
 import './img-edit-form-events.mjs'
 
-const PRESS_KEY = {
-  Enter: 'Enter',
-  Esc: 'Esc',
-  Escape: 'Escape',
+const PressKey = {
+  ENTER: 'Enter',
+  ESC: 'Esc',
+  ESCAPE: 'Escape',
 };
 
-export { PRESS_KEY };
+export { PressKey };

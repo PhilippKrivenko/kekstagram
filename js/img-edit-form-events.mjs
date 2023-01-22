@@ -1,5 +1,5 @@
 import { isPressKey } from "./_utils.mjs";
-import { PRESS_KEY } from "./_scripts.mjs";
+import { PressKey } from "./_scripts.mjs";
 
 // ФОРМА РЕДАКТИРОВАНИЯ ИЗОБРАЖЕНИЯ
 const imgEditForm = document.querySelector('.img-upload__overlay');
@@ -12,7 +12,7 @@ const imgUploadSubmit = document.querySelector('.img-upload__submit');
 
 // ОБРАБОТЧИК НА DOCUMENT ДЛЯ ЗАКРЫТИЯ ФОРМЫ С КЛАВИАТУРЫ ЧЕРЕЗ ESC
 const onPopupEscPress = (evt) => {
-  if (isPressKey(evt, PRESS_KEY.Escape) || isPressKey(evt, PRESS_KEY.Esc)) {
+  if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESCAPE)) {
     imgEditForm.classList.add('hidden');
     imgEditForm.classList.remove('modal-open');
   }
@@ -20,7 +20,7 @@ const onPopupEscPress = (evt) => {
 
 // ОБРАБОТЧИК НА КНОПКУ ЗАКРЫТИЯ ФОРМЫ С КЛАВИАТУРЫ ЧЕРЕЗ ENTER
 const onPopupEnterPress = (evt) => {
-  if (isPressKey(evt, PRESS_KEY.Enter)) {
+  if (isPressKey(evt, PressKey.ENTER)) {
     onCloseUploadForm()
   }
 };

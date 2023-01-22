@@ -17,6 +17,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
+// ПРОВЕРКА НА НАЖАТИЕ КЛАВИШИ
 const isPressKey = (evt, pressKey) => evt.key === pressKey;
 
 export { getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isPressKey };
