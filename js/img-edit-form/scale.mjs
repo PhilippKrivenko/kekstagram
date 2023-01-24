@@ -1,4 +1,4 @@
-import { isPressKey, PressKey } from "./_utils.mjs";
+import { isPressKey, PressKey } from '../_utils.mjs';
 
 // минимальный масштаб изображения
 const IMG_SIZE_MIN = 25;
@@ -16,18 +16,18 @@ const imgPreview = imgEditingForm.querySelector('.img-upload__preview > img');
 
 let scaleValue = 100;
 
-const onResizeControlSmaller = (evt) => {
+const onResizeControlSmaller = () => {
   if (scaleValue > IMG_SIZE_MIN) {
     scaleValue = scaleValue - IMG_SIZE_STEP;
-    controlValue.value = scaleValue + '%';
-    imgPreview.style.transform = `scale(${scaleValue * 0.01})`
+    controlValue.value = `${scaleValue}%`;
+    imgPreview.style.transform = `scale(${scaleValue * 0.01})`;
   }
 };
 const onResizeControlBigger = () => {
   if (scaleValue < IMG_SIZE_MAX) {
     scaleValue = scaleValue + IMG_SIZE_STEP;
-    controlValue.value = scaleValue + '%';
-    imgPreview.style.transform = `scale(${scaleValue * 0.01})`
+    controlValue.value = `${scaleValue}%`;
+    imgPreview.style.transform = `scale(${scaleValue * 0.01})`;
   }
 };
 

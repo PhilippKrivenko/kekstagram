@@ -1,63 +1,58 @@
-import { isPressKey, PressKey } from "./_utils.mjs";
-import { userCards } from "./card-list-dom.mjs";
-import { createCardModal } from "./card-modal-dom.mjs";
+import { isPressKey, PressKey } from '../_utils.mjs';
+import { userCards } from '../card-list-dom.mjs';
+import { createCardModal } from './dom.mjs';
 
-// КОНТЕЙНЕР ДЛЯ КАРТОЧЕК
+// контейнер для карточек
 const cardModalOpenList = document.querySelector('.pictures');
-// КАРТОЧКА ФОТОГРАФИИ
+// карточка фотографии
 const cardModalElement = document.querySelector('.big-picture');
-// КНОПКА ЗАКРЫТИЯ КАРТОЧКИ ФОТОГРАФИИ
+// кнопка закрытия карточки фотографии
 const cardModalCloseElement = document.querySelector('.big-picture__cancel');
 
-// ОБРАБОТЧИК НА DOCUMENT ДЛЯ КАРТОЧКИ С КЛАВИАТУРЫ ЧЕРЕЗ ESC
+// обработчик на document для карточки с клавиатуры через esc
 const onPopupEscPress = (evt) => {
   if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESC)) {
     cardModalElement.classList.add('hidden');
     cardModalElement.classList.remove('modal-open');
   }
-}
-
-// ОБРАБОТЧИК НА КНОПКУ ЗАКРЫТИЯ КАРТОЧКИ С КЛАВИАТУРЫ ЧЕРЕЗ ENTER
+};
+// обработчик на кнопку закрытия карточки с клавиатуры через enter
 const onCloseCardModalEvent = (evt) => {
   if (isPressKey(evt, PressKey.ENTER)) {
     onCloseCardModal()
   }
 };
 
-// ОБРАБОТЧИК ОТКРЫТИЯ КАРТОЧКИ
+// обработчик открытия карточки
 const onOpenCardModal = () => {
-  // cardModalCloseElement.focus();
+  cardModalCloseElement.focus();
   cardModalElement.classList.remove('hidden');
   cardModalElement.classList.add('modal-open');
-  document.addEventListener('keydown', onPopupEscPress)
+  document.addEventListener('keydown', onPopupEscPress);
 
   cardModalCloseElement.addEventListener('click', onCloseCardModal);
-
   cardModalCloseElement.addEventListener('keydown', onCloseCardModalEvent);
-}
-
-// ОБРАБОТЧИК ЗАКРЫТИЯ КАРТОЧКИ
+};
+// обработчик закрытия карточки
 const onCloseCardModal = () => {
   cardModalElement.classList.add('hidden');
   cardModalElement.classList.remove('modal-open');
-  document.removeEventListener('keydown', onPopupEscPress)
+  document.removeEventListener('keydown', onPopupEscPress);
 
   cardModalCloseElement.removeEventListener('click', onCloseCardModal);
-
   cardModalCloseElement.removeEventListener('keydown', onCloseCardModalEvent);
-}
+};
 
-// ДОБАВЛЕНИЕ ОБРАБОТЧИКА СОБЫТИЯ КАРТОЧКАМ ЧЕРЕЗ ИХ КОНТЕЙНЕР ПУТЕМ ДЕЛЕГИРОВАНИЯ
+// добавление обработчика события карточкам (делегирование)
 cardModalOpenList.addEventListener('click', (evt) => {
   if (evt.target.closest('.picture__img')) {
     createCardModal(userCards[evt.target.dataset.id]);
     onOpenCardModal();
   }
-})
-
+});
 cardModalOpenList.addEventListener('keydown', (evt) => {
   if (isPressKey(evt, PressKey.ENTER) && evt.target.closest('.picture__img')) {
     createCardModal(userCards[evt.target.dataset.id]);
     onOpenCardModal();
   }
-})
+});

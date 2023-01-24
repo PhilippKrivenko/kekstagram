@@ -21,7 +21,7 @@ const MESSAGES = [
 const MIN_NUMBER_AVATAR = 1;
 const MAX_NUMBER_AVATAR = 6;
 
-// СОЗДАТЬ РАНДОМНЫЙ КОММЕНТАРИЙ
+// создать рандомный комментарий
 const createComment = (index) => ({
   id: index + 1,
   avatar: `img/avatar-${getRandomIntInclusive(MIN_NUMBER_AVATAR, MAX_NUMBER_AVATAR)}.svg`,

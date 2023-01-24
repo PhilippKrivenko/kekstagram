@@ -9,5 +9,4 @@ const onEffectsRadio = (value) => {
 
 effectsList.addEventListener('change', (evt) => {
   onEffectsRadio(evt.target.defaultValue);
-  console.log(evt);
 });
