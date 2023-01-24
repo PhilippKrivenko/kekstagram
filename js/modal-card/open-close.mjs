@@ -2,6 +2,7 @@ import { isPressKey, PressKey } from '../_utils.mjs';
 import { userCards } from '../card-list-dom.mjs';
 import { createCardModal } from './dom.mjs';
 
+const body = document.querySelector('body');
 // контейнер для карточек
 const cardModalOpenList = document.querySelector('.pictures');
 // карточка фотографии
@@ -27,7 +28,7 @@ const onCloseCardModalEvent = (evt) => {
 const onOpenCardModal = () => {
   cardModalCloseElement.focus();
   cardModalElement.classList.remove('hidden');
-  cardModalElement.classList.add('modal-open');
+  body.classList.add('modal-open');
   document.addEventListener('keydown', onPopupEscPress);
 
   cardModalCloseElement.addEventListener('click', onCloseCardModal);
@@ -36,7 +37,7 @@ const onOpenCardModal = () => {
 // обработчик закрытия карточки
 const onCloseCardModal = () => {
   cardModalElement.classList.add('hidden');
-  cardModalElement.classList.remove('modal-open');
+  body.classList.remove('modal-open');
   document.removeEventListener('keydown', onPopupEscPress);
 
   cardModalCloseElement.removeEventListener('click', onCloseCardModal);
@@ -45,14 +46,14 @@ const onCloseCardModal = () => {
 
 // добавление обработчика события карточкам (делегирование)
 cardModalOpenList.addEventListener('click', (evt) => {
-  if (evt.target.closest('.picture__img')) {
-    createCardModal(userCards[evt.target.dataset.id]);
+  if (evt.target.closest('.picture')) {
+    createCardModal(userCards[evt.target.closest('.picture').dataset.id]);
     onOpenCardModal();
   }
 });
 cardModalOpenList.addEventListener('keydown', (evt) => {
-  if (isPressKey(evt, PressKey.ENTER) && evt.target.closest('.picture__img')) {
-    createCardModal(userCards[evt.target.dataset.id]);
+  if (isPressKey(evt, PressKey.ENTER) && evt.target.closest('.picture')) {
+    createCardModal(userCards[evt.target.closest('.picture').dataset.id]);
     onOpenCardModal();
   }
 });

@@ -12,8 +12,8 @@ const userListFragment = document.createDocumentFragment();
 userCards.forEach(({ url, description, likes, comments }, index) => {
   const userElement = userCardTemplate.cloneNode(true);
   const userElementImg =  userElement.querySelector('.picture__img');
-  userElementImg.dataset.id = index;
 
+  userElement.dataset.id = index;
   userElementImg.src = url;
   userElementImg.alt = description;
   userElement.querySelector('.picture__likes').textContent = likes;

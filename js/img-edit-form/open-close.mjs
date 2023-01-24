@@ -1,5 +1,6 @@
 import { isPressKey, PressKey } from '../_utils.mjs';
 
+const body = document.querySelector('body');
 // форма редактирования изображения
 const imgEditForm = document.querySelector('.img-upload__overlay');
 // кнопка закрытия формы редактирования изображения
@@ -27,7 +28,7 @@ const onPopupEnterPress = (evt) => {
 const onOpenUploadForm = () => {
   imgEditFormCancel.focus();
 
-  imgEditForm.classList.add('modal-open');
+  body.classList.add('modal-open');
   imgEditForm.classList.remove('hidden');
 
   document.addEventListener('keydown', onPopupEscPress);
@@ -40,8 +41,8 @@ const onOpenUploadForm = () => {
 
 // обработчик закрытия формы редактирования изображения
 const onCloseUploadForm = () => {
+  body.classList.remove('modal-open');
   imgEditForm.classList.add('hidden');
-  imgEditForm.classList.remove('modal-open');
 
   document.removeEventListener('keydown', onPopupEscPress);
   imgEditFormCancel.removeEventListener('click', onCloseUploadForm);
