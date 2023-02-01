@@ -14,7 +14,7 @@ const cardModalCloseElement = document.querySelector('.big-picture__cancel');
 const onPopupEscPress = (evt) => {
   if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESC)) {
     cardModalElement.classList.add('hidden');
-    cardModalElement.classList.remove('modal-open');
+    body.classList.remove('modal-open');
   }
 };
 // обработчик на кнопку закрытия карточки с клавиатуры через enter

@@ -14,7 +14,7 @@ const imgUploadSubmit = document.querySelector('.img-upload__submit');
 const onPopupEscPress = (evt) => {
   if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESCAPE)) {
     imgEditForm.classList.add('hidden');
-    imgEditForm.classList.remove('modal-open');
+    body.classList.remove('modal-open');
   }
 };
 // обработчик на кнопку закрытия формы с клавиатуры через enter

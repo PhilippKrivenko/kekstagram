@@ -16,4 +16,3 @@ const createCardModal = ({ url, description, likes, comments }) => {
 };
 
 export { createCardModal };
-

@@ -56,9 +56,12 @@
                   </div>
 
                   <!-- Изменение глубины эффекта, накладываемого на изображение -->
-                  <fieldset class="img-upload__effect-level  effect-level">
-                    <input class="effect-level__value" type="number" step="any" name="effect-level" value="">
-                    <div class="effect-level__slider"></div>
+                  <fieldset class="img-upload__effect-level  effect-level hidden">
+                    <input class="effect-level__value" type="range" name="effect-level">
+                    <div class="effect-level__line">
+                      <div class="effect-level__pin" tabindex="0">Кнопка изменения глубины эффекта фотографии</div>
+                      <div class="effect-level__depth">Глубина эффекта фотографии</div>
+                    </div>
                   </fieldset>
 
                   <!-- Кнопка для закрытия формы редактирования изображения -->
@@ -119,7 +122,7 @@
                     <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
                   </div>
                   <div class="img-upload__field-wrapper">
-                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..." required></textarea>
+                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
                   </div>
                 </fieldset>
 

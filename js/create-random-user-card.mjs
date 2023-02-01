@@ -31,12 +31,10 @@ const DESCRIPTIONS = [
 
 const MIN_NUMBER_LIKES = 15;
 const MAX_NUMBER_LIKES = 200;
-const MIN_NUMBER_COMMENTS = 1;
-const MAX_NUMBER_COMMENTS = 20;
 
 // создать рандомное число комментариев
 const getRandomNamberOfComments = () => {
-  const comments = new Array(getRandomIntInclusive(MIN_NUMBER_COMMENTS, MAX_NUMBER_COMMENTS)).fill(null).map((current, index) => createComment(index));
+  const comments = new Array(2).fill(null).map((current, index) => createComment(index));
   return comments;
 };
 
