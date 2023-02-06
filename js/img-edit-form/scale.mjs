@@ -14,7 +14,7 @@ const controlBigger = imgEditingForm.querySelector('.scale__control--bigger');
 const controlValue = imgEditingForm.querySelector('.scale__control--value');
 const imgPreview = imgEditingForm.querySelector('.img-upload__preview > img');
 
-let scaleValue = 100;
+let scaleValue = IMG_SIZE_MAX;
 
 const onResizeControlSmaller = () => {
   if (scaleValue > IMG_SIZE_MIN) {

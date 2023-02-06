@@ -1,3 +1,5 @@
+import { ImgFilters } from '../_utils.mjs';
+
 // форма редактирования изображения
 const imgEditingForm = document.querySelector('.img-upload__form');
 // список эффектов
@@ -6,6 +8,12 @@ const effectsList = imgEditingForm.querySelector('.effects__list');
 const imgPreview = imgEditingForm.querySelector('.img-upload__preview > img');
 // уровень эффекта
 const effectLevel = document.querySelector('.effect-level');
+// input
+const effectLevelValue = document.querySelector('.effect-level__value');
+// пин
+const effectLevelPin = document.querySelector('.effect-level__pin');
+// глубина эффекта
+const effectLevelDepth = document.querySelector('.effect-level__depth');
 
 // ПЕРЕКЛЮЧЕНИЕ ЭФФЕКТА
 const onEffectsRadio = (value) => {
@@ -13,23 +21,32 @@ const onEffectsRadio = (value) => {
   imgPreview.classList = '';
   imgPreview.classList.add(`effects__preview--${value}`);
 
+  effectLevelValue.value = '100';
+  effectLevelPin.style.left = '100%';
+  effectLevelDepth.style.width = '100%';
+
   // фильтры
-  if (value === 'chrome') {
-    imgPreview.style.filter = 'grayscale(1)';
-  } else if (value === 'sepia') {
-    imgPreview.style.filter = 'sepia(1)';
-  } else if (value === 'marvin') {
-    imgPreview.style.filter = 'invert(100%)';
-  } else if (value === 'phobos') {
-    imgPreview.style.filter = 'blur(3px)';
-  } else if (value === 'heat') {
-    imgPreview.style.filter = 'brightness(3)';
+  if (value === ImgFilters.chrome.name) {
+    imgPreview.style.filter = `${ImgFilters.chrome.attribute}(${ImgFilters.chrome.max})`;
+  }
+  if (value === ImgFilters.sepia.name) {
+    imgPreview.style.filter = `${ImgFilters.sepia.attribute}(${ImgFilters.sepia.max})`;
+  }
+  if (value === ImgFilters.marvin.name) {
+    imgPreview.style.filter = `${ImgFilters.marvin.attribute}(${ImgFilters.marvin.max}%)`;
+  }
+  if (value === ImgFilters.phobos.name) {
+    imgPreview.style.filter = `${ImgFilters.phobos.attribute}(${ImgFilters.phobos.max}px)`;
+  }
+  if (value === ImgFilters.heat.name) {
+    imgPreview.style.filter = `${ImgFilters.heat.attribute}(${ImgFilters.heat.max})`;
   }
 
   // скрытие/показ шкалы
   if (value === 'none') {
     effectLevel.classList.add('hidden');
-  } else {
+  }
+  if (value !== 'none') {
     effectLevel.classList.remove('hidden');
   }
 };
