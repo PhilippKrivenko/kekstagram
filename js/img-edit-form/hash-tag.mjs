@@ -1,5 +1,7 @@
 // максимальная длинна хэш-тега включая решётку
 const MAX_LENGTH_HASHTAG = 20;
+// минимальная длинна хэш-тега включая решётку
+const MIN_LENGTH_HASHTAG = 2;
 // максимальное число хэш-тегов
 const MAX_NUMBER_HASHTAG = 5;
 
@@ -9,12 +11,10 @@ const hashTagField = imgEditingForm.querySelector('.text__hashtags');
 hashTagField.addEventListener('blur', (evt) => {
   evt.preventDefault();
 
+  // требования к хэш-тегу
+  const requirements = [];
   // массив регистронезависимых хэш-тегов разделённых 1 и более пробелом и обрезание пробелов по краям
-  const hashTags = hashTagField.value.toLowerCase().replace(/\s+$/, '').replace(/^\s+/, '').split(/\s+/);
-  // колличество хэш-тегов
-  const hashTagsNumber = hashTags.length;
-  // шаблон хэш-тега
-  const regExp = new RegExp(`^#[0-9\\p{L}]{1,${MAX_LENGTH_HASHTAG - 1}}`, 'u');
+  const hashTags = hashTagField.value.toLowerCase().trim().split(/\s+/);
 
   // проверка хэш-тегов на дубли
   const hasDuplicates = (arr) => {
@@ -22,22 +22,40 @@ hashTagField.addEventListener('blur', (evt) => {
     return result;
   };
 
-  hashTagField.setCustomValidity('');
-  evt.target.style.border = '';
-
-  if (hashTagsNumber > MAX_NUMBER_HASHTAG) {
-    hashTagField.setCustomValidity('нельзя указать больше пяти хэш-тегов');
-    evt.target.style.border = '2px solid #8B0000';
+  if (hashTags.length > MAX_NUMBER_HASHTAG) {
+    requirements.push('нельзя указать больше пяти хэш-тегов');
   }
   if (hasDuplicates(hashTags)) {
-    hashTagField.setCustomValidity('один и тот же хэш-тег не может быть использован дважды');
-    evt.target.style.border = '2px solid #8B0000';
+    requirements.push('один и тот же хэш-тег не может быть использован дважды');
   }
 
   hashTags.forEach((element) => {
-    if (!regExp.test(element)) {
-      hashTagField.setCustomValidity('не валидный хэш-тег');
-      evt.target.style.border = '2px solid #8B0000';
+    if (element.length < MIN_LENGTH_HASHTAG) {
+      requirements.push('хэш-тег должен состоять минимум из 2 символов');
+    }
+    if (element.length > MAX_LENGTH_HASHTAG) {
+      requirements.push('хэш-тег не должен состовлять более 20 символов');
+    }
+    if (!/^#/.test(element)) {
+      requirements.push('хэш-тег начинается с символа # (решётка)');
+    }
+    if (/[^#a-zA-Z0-9]/g.test(element)) {
+      requirements.push('строка после решётки должна состоять из букв и чисел и не может содержать пробелы, спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.');
+    }
+    if (element.match(/#/g).length > 1) {
+      requirements.push('хэш-теги разделяются пробелами');
     }
   });
+
+  hashTagField.setCustomValidity(requirements.join(', '));
+
+  if (hashTagField.value === 0) {
+    hashTagField.setCustomValidity('');
+  }
+  if (requirements.length > 0) {
+    evt.target.style.border = '2px solid #8B0000';
+  }
+  if (requirements.length === 0) {
+    evt.target.removeAttribute('style');
+  }
 });

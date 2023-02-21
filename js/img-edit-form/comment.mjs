@@ -1,5 +1,5 @@
 // максимальная длина комментария
-const COM_LENGTH_MAX = 140;
+const COM_LENGTH_MAX = 14;
 
 const imgEditingForm = document.querySelector('.img-upload__form');
 const commentField = imgEditingForm.querySelector('.text__description');
