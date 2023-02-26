@@ -1,6 +1,6 @@
 const bigPicture = document.querySelector('.big-picture');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img > img');
-const socialCommentElements = bigPicture.querySelectorAll('.social__comment')
+const socialCommentElements = bigPicture.querySelectorAll('.social__comment');
 
 const createCardModal = ({ url, description, likes, comments }) => {
   bigPictureImg.src = url;
@@ -12,8 +12,7 @@ const createCardModal = ({ url, description, likes, comments }) => {
   socialCommentElements.forEach((elem, index) => {
     elem.querySelector('.social__picture').src = comments[index].avatar;
     elem.querySelector('.social__text').textContent = comments[index].message;
-  })
-}
+  });
+};
 
 export { createCardModal };
-

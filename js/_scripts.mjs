@@ -1,12 +1,9 @@
-import './card-dom.mjs';
-import './card-modal-dom.mjs';
-import './card-modal-events.mjs';
-import './img-edit-form-events.mjs'
-
-const PressKey = {
-  ENTER: 'Enter',
-  ESC: 'Esc',
-  ESCAPE: 'Escape',
-};
-
-export { PressKey };
+import './card-list-dom.mjs';
+import './modal-card/dom.mjs';
+import './modal-card/open-close.mjs';
+import './img-edit-form/open-close.mjs';
+import './img-edit-form/comment.mjs';
+import './img-edit-form/scale.mjs';
+import './img-edit-form/effects.mjs';
+import './img-edit-form/effects-depth.mjs';
+import './img-edit-form/hash-tag.mjs';

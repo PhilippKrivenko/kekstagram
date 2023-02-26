@@ -1,35 +1,34 @@
-import { isPressKey } from "./_utils.mjs";
-import { PressKey } from "./_scripts.mjs";
+import { isPressKey, PressKey } from '../_utils.mjs';
 
-// ФОРМА РЕДАКТИРОВАНИЯ ИЗОБРАЖЕНИЯ
+const body = document.querySelector('body');
+// форма редактирования изображения
 const imgEditForm = document.querySelector('.img-upload__overlay');
-// КНОПКА ЗАКРЫТИЯ ФОРМЫ РЕДАКТИРОВАНИЯ ИЗОБРАЖЕНИЯ
+// кнопка закрытия формы редактирования изображения
 const imgEditFormCancel = document.querySelector('.img-upload__cancel');
-// КНОПКА ЗАГРУЗКИ ИЗОБРАЖЕНИЯ
+// кнопка загрузки изображения
 const imgUpload = document.querySelector('.img-upload__input');
-// КНОПКА ОТПРАВКИ ДАННЫХ НА СЕРВЕР
+// кнопка отправки данных на сервер
 const imgUploadSubmit = document.querySelector('.img-upload__submit');
 
-// ОБРАБОТЧИК НА DOCUMENT ДЛЯ ЗАКРЫТИЯ ФОРМЫ С КЛАВИАТУРЫ ЧЕРЕЗ ESC
+// обработчик на document для закрытия формы с клавиатуры через esc
 const onPopupEscPress = (evt) => {
   if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESCAPE)) {
     imgEditForm.classList.add('hidden');
-    imgEditForm.classList.remove('modal-open');
+    body.classList.remove('modal-open');
   }
-}
-
-// ОБРАБОТЧИК НА КНОПКУ ЗАКРЫТИЯ ФОРМЫ С КЛАВИАТУРЫ ЧЕРЕЗ ENTER
+};
+// обработчик на кнопку закрытия формы с клавиатуры через enter
 const onPopupEnterPress = (evt) => {
   if (isPressKey(evt, PressKey.ENTER)) {
     onCloseUploadForm()
   }
 };
 
-// ОБРАБОТЧИК ОТКРЫТИЯ ФОРМЫ РЕДАКТИРОВАНИЯ ИЗОБРАЖЕНИЯ
+// обработчик открытия формы редактирования изображения
 const onOpenUploadForm = () => {
   imgEditFormCancel.focus();
 
-  imgEditForm.classList.add('modal-open');
+  body.classList.add('modal-open');
   imgEditForm.classList.remove('hidden');
 
   document.addEventListener('keydown', onPopupEscPress);
@@ -38,12 +37,12 @@ const onOpenUploadForm = () => {
 
   imgUploadSubmit.addEventListener('click', onCloseUploadForm);
   imgUploadSubmit.addEventListener('keydown', onPopupEnterPress);
-}
+};
 
-// ОБРАБОТЧИК ЗАКРЫТИЯ ФОРМЫ РЕДАКТИРОВАНИЯ ИЗОБРАЖЕНИЯ
+// обработчик закрытия формы редактирования изображения
 const onCloseUploadForm = () => {
+  body.classList.remove('modal-open');
   imgEditForm.classList.add('hidden');
-  imgEditForm.classList.remove('modal-open');
 
   document.removeEventListener('keydown', onPopupEscPress);
   imgEditFormCancel.removeEventListener('click', onCloseUploadForm);
@@ -51,7 +50,7 @@ const onCloseUploadForm = () => {
 
   imgUploadSubmit.removeEventListener('click', onCloseUploadForm);
   imgUploadSubmit.removeEventListener('keydown', onPopupEnterPress);
-}
+};
 
-// ДОБАВЛЕНИЕ ОБРАБОТЧИКА СОБЫТИЯ КНОПКЕ ЗАГРУЗКИ ИЗОБРАЖЕНИЯ
+// добавление обработчика события кнопке загрузки изображения
 imgUpload.addEventListener('change', onOpenUploadForm);
