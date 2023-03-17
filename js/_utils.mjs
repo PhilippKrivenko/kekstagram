@@ -27,6 +27,9 @@ const PressKey = {
 };
 
 const ImgFilters = {
+  origin: {
+    name: 'none',
+  },
   chrome: {
     name: 'chrome',
     attribute: 'grayscale',
@@ -59,4 +62,30 @@ const ImgFilters = {
   },
 };
 
-export { getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isPressKey, PressKey, ImgFilters };
+// возвращение данных в исходную форму
+const clearForm = () => {
+  const scaleValue = document.querySelector('.scale__control--value');
+  const effectLevelValue = document.querySelector('.effect-level__value');
+  const imgPreview = document.querySelector('.img-upload__preview > img');
+  const effectLevelPin = document.querySelector('.effect-level__pin');
+  const effectLevelDepth = document.querySelector('.effect-level__depth');
+  const effectOrigin = document.querySelector('#effect-none');
+  const hashTagField = document.querySelector('.text__hashtags');
+  const commentField = document.querySelector('.text__description');
+  const uploadFile = document.querySelector('#upload-file');
+
+  scaleValue.value = '100%';
+
+  imgPreview.style.filter = 'none';
+  imgPreview.style.transform = 'none';
+  effectLevelValue.value = '100';
+  effectLevelPin.style.left = '100%';
+  effectLevelDepth.style.width = '100%';
+  effectOrigin.checked = true;
+
+  hashTagField.value = '';
+  commentField.value = '';
+  uploadFile.value = '';
+};
+
+export { getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isPressKey, clearForm, PressKey, ImgFilters };

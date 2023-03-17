@@ -30,11 +30,11 @@
       <section class="img-upload">
         <div class="img-upload__wrapper">
           <h2 class="img-upload__title  visually-hidden">Загрузка фотографии</h2>
-          <form class="img-upload__form" id="upload-select-image" method="post" enctype="multipart/form-data" action="https://echo.htmlacademy.ru" autocomplete="off">
+          <form class="img-upload__form" id="upload-select-image" name="imgUploadForm">
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
-              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" required>
+              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="fileName" required>
               <label for="upload-file" class="img-upload__label  img-upload__control">Загрузить</label>
             </fieldset>
 
@@ -57,7 +57,7 @@
 
                   <!-- Изменение глубины эффекта, накладываемого на изображение -->
                   <fieldset class="img-upload__effect-level  effect-level hidden">
-                    <input class="effect-level__value" type="range" name="effect-level">
+                    <input class="effect-level__value" type="range" name="effectLevel">
                     <div class="effect-level__line">
                       <div class="effect-level__pin" tabindex="0">Кнопка изменения глубины эффекта фотографии</div>
                       <div class="effect-level__depth">Глубина эффекта фотографии</div>
@@ -119,7 +119,7 @@
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
                   <div class="img-upload__field-wrapper">
-                    <input type="text" class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
+                    <input type="text" class="text__hashtags" name="hashTags" placeholder="#ХэшТег">
                   </div>
                   <div class="img-upload__field-wrapper">
                     <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
