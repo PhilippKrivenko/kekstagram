@@ -17,10 +17,16 @@ const onPopupEnterPress = (evt) => {
     onCloseMessage();
   }
 };
+const onOutsidePress = (evt) => {
+  if (!(evt.target.closest('.success__inner') || evt.target.closest('.error__inner'))) {
+    onCloseMessage();
+  }
+};
 
 
 // обработчик события на кнопку закрытия сообщения
 const onOpenMessage = (button) => {
+  document.addEventListener('click', onOutsidePress);
   document.addEventListener('keydown', onPopupEscPress);
   button.addEventListener('click', onCloseMessage);
   button.addEventListener('keydown', onPopupEnterPress);
@@ -29,6 +35,7 @@ const onCloseMessage = (button) => {
   success.remove();
   fail.remove();
 
+  document.removeEventListener('click', onOutsidePress);
   document.removeEventListener('keydown', onPopupEscPress);
   button.removeEventListener('click', onCloseMessage);
   button.removeEventListener('keydown', onPopupEnterPress);
@@ -48,7 +55,7 @@ form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   document.body.append(loading);
 
-  postData('https://2agram', form)
+  postData('https://23.javascript.pages.academy/kekstagram', form)
     .then(() => {
       loading.remove();
       document.body.append(success);
