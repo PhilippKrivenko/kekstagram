@@ -26,6 +26,9 @@ const onEffectsRadio = (value) => {
   effectLevelDepth.style.width = '100%';
 
   // фильтры
+  if (value === ImgFilters.origin.name) {
+    imgPreview.style.filter = null;
+  }
   if (value === ImgFilters.chrome.name) {
     imgPreview.style.filter = `${ImgFilters.chrome.attribute}(${ImgFilters.chrome.max})`;
   }
