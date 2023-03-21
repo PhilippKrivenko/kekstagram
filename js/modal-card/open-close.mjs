@@ -1,6 +1,7 @@
-import { isPressKey, PressKey } from '../_utils.mjs';
+import { PressKey } from '../_data.mjs';
 import { userCards } from '../card-list-dom.mjs';
 import { createCardModal } from './dom.mjs';
+import { isPressKey } from '../_utils.mjs';
 
 const body = document.querySelector('body');
 // контейнер для карточек

@@ -7,4 +7,6 @@ import './img-edit-form/scale.mjs';
 import './img-edit-form/effects.mjs';
 import './img-edit-form/effects-depth.mjs';
 import './img-edit-form/hash-tag.mjs';
-import './img-edit-form/sending-data.mjs';
+import './status-message.mjs';
+import './post-data.mjs';
+import './get-data.mjs';

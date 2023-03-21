@@ -1,4 +1,5 @@
-import { isPressKey, PressKey } from '../_utils.mjs';
+import { PressKey } from '../_data.mjs';
+import { isPressKey } from '../_utils.mjs';
 
 // минимальный масштаб изображения
 const IMG_SIZE_MIN = 25;

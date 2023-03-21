@@ -1,4 +1,4 @@
-import { ImgFilters } from '../_utils.mjs';
+import { ImgFilters } from '../_data.mjs';
 
 // уровень эффекта
 const effectLevel = document.querySelector('.effect-level');

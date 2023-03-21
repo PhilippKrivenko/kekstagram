@@ -1,4 +1,5 @@
-import { isPressKey, PressKey, clearForm } from '../_utils.mjs';
+import { PressKey } from '../_data.mjs';
+import { isPressKey, clearForm } from '../_utils.mjs';
 
 const body = document.querySelector('body');
 // форма редактирования изображения
