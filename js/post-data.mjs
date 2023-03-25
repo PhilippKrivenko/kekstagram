@@ -1,6 +1,6 @@
 import { clearForm } from './_utils.mjs';
 import { onOpenMessage } from './status-message.mjs';
-import { postFormData } from './_API.mjs';
+import { addPhotoCard } from './_API.mjs';
 
 const imgEditForm = document.querySelector('.img-upload__form');
 
@@ -9,10 +9,7 @@ imgEditForm.addEventListener('submit', (evt) => {
   const loading = document.querySelector('#messages').content.querySelector('.img-upload__message').cloneNode(true);
   document.body.append(loading);
 
-  postFormData('https://23.javascript.pages.academy/kekstagram', imgEditForm)
-    .finally(() => {
-      loading.remove();
-    })
+  addPhotoCard('https://23.javascript.pages.academy/kekstagram', imgEditForm)
     .then(() => {
       const success = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
       document.body.append(success);
@@ -25,5 +22,8 @@ imgEditForm.addEventListener('submit', (evt) => {
       document.body.append(fail);
       const errorButton = document.querySelector('.error__button');
       onOpenMessage(errorButton);
+    })
+    .finally(() => {
+      loading.remove();
     });
 });

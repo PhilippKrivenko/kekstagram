@@ -45,7 +45,6 @@ const onCloseCardModal = () => {
   document.removeEventListener('keydown', onPopupEscPress);
   cardModalCloseElement.removeEventListener('click', onCloseCardModal);
   cardModalCloseElement.removeEventListener('keydown', onCloseCardModalEvent);
-  commentsLouder.removeEventListener('click', onClick);
 };
 
 
