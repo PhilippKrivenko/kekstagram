@@ -24,12 +24,21 @@ const onOpenMessage = (button) => {
   button.addEventListener('click', onCloseMessage);
   button.addEventListener('keydown', onPopupEnterPress);
 };
-const onCloseMessage = (button) => {
-  const success = document.querySelector('.success');
-  const error = document.querySelector('.error');
+const onCloseMessage = () => {
+  let button;
 
-  if (success) { success.remove(); }
-  if (error) { error.remove(); }
+  if (document.querySelector('.success')) {
+    button = document.querySelector('.success__button');
+    document.querySelector('.success').remove();
+  }
+  if (document.querySelector('.error')) {
+    button = document.querySelector('.error__button');
+    document.querySelector('.error').remove();
+  }
+  if (document.querySelector('.error-server')) {
+    button = document.querySelector('.error-server__button');
+    document.querySelector('.error-server').remove();
+  }
 
   document.removeEventListener('click', onOutsidePress);
   document.removeEventListener('keydown', onPopupEscPress);

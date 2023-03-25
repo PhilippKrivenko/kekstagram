@@ -145,29 +145,20 @@
 
         <!-- Просмотр изображения -->
         <div class="big-picture__img">
-          <img src="img/logo-background-3.jpg" alt="Девушка в купальнике" width="600" height="600">
+          <img src="" alt="" width="600" height="600">
         </div>
 
         <!-- Информация об изображении. Подпись, комментарии, количество лайков -->
         <div class="big-picture__social  social">
           <div class="social__header">
             <img class="social__picture" src="img/avatar-1.svg" alt="Аватар автора фотографии" width="35" height="35">
-            <p class="social__caption">Тестим новую камеру! =)</p>
-            <p class="social__likes">Нравится <span class="likes-count">356</span></p>
+            <p class="social__caption">Подпись к фотографии</p>
+            <p class="social__likes">Нравится <span class="likes-count">0</span></p>
           </div>
 
           <!-- Комментарии к изображению -->
-          <div class="social__comment-count">5 из <span class="comments-count">125</span> комментариев</div>
-          <ul class="social__comments">
-            <li class="social__comment">
-              <img class="social__picture" src="img/avatar-4.svg" alt="Аватар комментатора фотографии" width="35" height="35">
-              <p class="social__text">Мега фото! Просто обалдеть. Как вам так удалось?</p>
-            </li>
-            <li class="social__comment">
-              <img class="social__picture" src="img/avatar-3.svg" alt="Аватар комментатора фотографии" width="35" height="35">
-               <p class="social__text">Да это фоташоп!!!!!!!!</p>
-            </li>
-          </ul>
+          <div class="social__comment-count"><span class="comments-count-current">0</span> из <span class="comments-count">0</span> комментариев</div>
+          <ul class="social__comments"></ul>
 
           <!-- Кнопка для загрузки новой порции комментариев -->
           <button type="button" class="social__comments-loader  comments-loader">Загрузить еще</button>
@@ -233,6 +224,24 @@
   <!-- Экран загрузки изображения -->
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
+  </template>
+
+  <!-- Сообщение с ошибкой загрузки данных с сервера -->
+  <template id="error-server">
+    <section class="error-server">
+      <div class="error-server__inner">
+        <h2 class="error-server__title">Ошибка загрузки данных с сервера</h2>
+        <button type="button" class="error-server__button">Ясненько</button>
+      </div>
+    </section>
+  </template>
+
+  <!-- Шаблон комментария случайного пользователя -->
+  <template id="social__comment">
+    <li class="social__comment">
+      <img class="social__picture" src="" alt="Аватар комментатора фотографии" width="35" height="35">
+      <p class="social__text"></p>
+    </li>
   </template>
 
   <script type="module" src="js/_scripts.mjs"></script>

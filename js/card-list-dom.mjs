@@ -1,27 +1,24 @@
-import { createUserCard } from './create-random-user-card.mjs';
-import { shuffleArray } from './_utils.mjs';
+const userCardsBuilder = (userCards) => {
+  // контейнер карточек
+  const userListElement = document.querySelector('.pictures');
+  // шаблон карточек
+  const userCardTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-const NUMBER_OF_CARDS = 25;
+  const userListFragment = document.createDocumentFragment();
 
-const userCards = shuffleArray(new Array(NUMBER_OF_CARDS).fill(null).map((current, index) => createUserCard(index)));
-const userListElement = document.querySelector('.pictures');
-const userCardTemplate = document.querySelector('#picture').content.querySelector('.picture');
+  userCards.forEach(({ id, url, likes, comments }) => {
+    const userElement = userCardTemplate.cloneNode(true);
+    const userElementImg = userElement.querySelector('.picture__img');
 
-const userListFragment = document.createDocumentFragment();
+    userElement.id = `${id}`;
+    userElementImg.src = url;
+    userElement.querySelector('.picture__likes').textContent = likes;
+    userElement.querySelector('.picture__comments').textContent = comments.length;
 
-userCards.forEach(({ url, description, likes, comments }, index) => {
-  const userElement = userCardTemplate.cloneNode(true);
-  const userElementImg =  userElement.querySelector('.picture__img');
+    userListFragment.appendChild(userElement);
+  });
 
-  userElement.dataset.id = index;
-  userElementImg.src = url;
-  userElementImg.alt = description;
-  userElement.querySelector('.picture__likes').textContent = likes;
-  userElement.querySelector('.picture__comments').textContent = comments.length;
+  userListElement.appendChild(userListFragment);
+};
 
-  userListFragment.appendChild(userElement);
-});
-
-userListElement.appendChild(userListFragment);
-
-export { userCards };
+export { userCardsBuilder };

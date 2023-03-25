@@ -1,11 +1,16 @@
 // ОТПРАВКА ФОРМЫ
 const postFormData = async (url, formElem) => {
-  const res = await fetch(url, {
+  await fetch(url, {
     method: 'POST',
     body: new FormData(formElem),
   });
-
-  return await res.text();
 };
 
-export { postFormData };
+// ПОЛУЧЕНИЕ ДАННЫХ С СЕРВЕРА
+const getUserData = async (url) => {
+  const res = await fetch(url);
+
+  return res.json();
+};
+
+export { postFormData, getUserData };

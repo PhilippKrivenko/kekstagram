@@ -46,4 +46,25 @@ const clearForm = () => {
   uploadFile.value = '';
 };
 
-export { getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isPressKey, clearForm };
+const showComments = (numberComments, comments) => {
+  const commentsElementTemplate = document.querySelector('#social__comment').content.querySelector('.social__comment');
+  const commentList = document.querySelector('.social__comments');
+  const commentListFragment = document.createDocumentFragment();
+  const numberComment = commentList.children.length;
+
+  for (let i = 0; (i < numberComments) & (numberComment + i) < comments.length; i++) {
+    const commentsElement = commentsElementTemplate.cloneNode(true);
+    const avatar = commentsElement.querySelector('.social__picture');
+    const idComment = numberComment + i;
+
+    avatar.src = comments[idComment].avatar;
+    avatar.alt = comments[idComment].name;
+    commentsElement.querySelector('.social__text').textContent = comments[idComment].message;
+
+    commentListFragment.append(commentsElement);
+  }
+
+  commentList.append(commentListFragment);
+};
+
+export { getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isPressKey, clearForm, showComments };

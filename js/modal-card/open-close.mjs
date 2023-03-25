@@ -1,7 +1,7 @@
 import { PressKey } from '../_data.mjs';
-import { userCards } from '../card-list-dom.mjs';
 import { createCardModal } from './dom.mjs';
 import { isPressKey } from '../_utils.mjs';
+import { onUploudComments } from './upload-comments.mjs';
 
 const body = document.querySelector('body');
 // контейнер для карточек
@@ -11,50 +11,60 @@ const cardModalElement = document.querySelector('.big-picture');
 // кнопка закрытия карточки фотографии
 const cardModalCloseElement = document.querySelector('.big-picture__cancel');
 
-// обработчик на document для карточки с клавиатуры через esc
+
 const onPopupEscPress = (evt) => {
   if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESC)) {
-    cardModalElement.classList.add('hidden');
-    body.classList.remove('modal-open');
+    onCloseCardModal();
   }
 };
-// обработчик на кнопку закрытия карточки с клавиатуры через enter
 const onCloseCardModalEvent = (evt) => {
   if (isPressKey(evt, PressKey.ENTER)) {
-    onCloseCardModal()
+    onCloseCardModal();
   }
 };
 
-// обработчик открытия карточки
+
 const onOpenCardModal = () => {
   cardModalCloseElement.focus();
   cardModalElement.classList.remove('hidden');
   body.classList.add('modal-open');
-  document.addEventListener('keydown', onPopupEscPress);
 
+  document.addEventListener('keydown', onPopupEscPress);
   cardModalCloseElement.addEventListener('click', onCloseCardModal);
   cardModalCloseElement.addEventListener('keydown', onCloseCardModalEvent);
 };
-// обработчик закрытия карточки
+
 const onCloseCardModal = () => {
+  const commentsLouder = document.querySelector('.social__comments-loader');
+
   cardModalElement.classList.add('hidden');
   body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onPopupEscPress);
+  document.querySelector('.social__comments').innerHTML = '';
+  commentsLouder.classList.remove('hidden');
 
+  document.removeEventListener('keydown', onPopupEscPress);
   cardModalCloseElement.removeEventListener('click', onCloseCardModal);
   cardModalCloseElement.removeEventListener('keydown', onCloseCardModalEvent);
+  commentsLouder.removeEventListener('click', onClick);
 };
 
-// добавление обработчика события карточкам (делегирование)
-cardModalOpenList.addEventListener('click', (evt) => {
-  if (evt.target.closest('.picture')) {
-    createCardModal(userCards[evt.target.closest('.picture').dataset.id]);
-    onOpenCardModal();
-  }
-});
-cardModalOpenList.addEventListener('keydown', (evt) => {
-  if (isPressKey(evt, PressKey.ENTER) && evt.target.closest('.picture')) {
-    createCardModal(userCards[evt.target.closest('.picture').dataset.id]);
-    onOpenCardModal();
-  }
-});
+
+const onCardModal = (userCards) => {
+  cardModalOpenList.addEventListener('click', (evt) => {
+    if (evt.target.closest('.picture')) {
+      const userCard = userCards[evt.target.closest('.picture').id];
+
+      createCardModal(userCard);
+      onOpenCardModal();
+      onUploudComments(userCard.comments);
+    }
+  });
+  cardModalOpenList.addEventListener('keydown', (evt) => {
+    if (isPressKey(evt, PressKey.ENTER) && evt.target.closest('.picture')) {
+      createCardModal(userCards[evt.target.closest('.picture').id]);
+      onOpenCardModal();
+    }
+  });
+};
+
+export { onCardModal };
