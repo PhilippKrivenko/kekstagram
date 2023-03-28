@@ -22,14 +22,16 @@ const onUploudCommentsKeydown = (evt, comments) => {
   }
 };
 
-
 const onUploudComments = (comments) => {
-  commentsLouder.addEventListener('click', () => {
+  const handleUploadCommentsClick = () => {
     onUploudCommentsEvent(comments);
-  });
-  commentsLouder.addEventListener('keydown', (evt) => {
+  };
+  const handleUploadCommentsKeydown = (evt) => {
     onUploudCommentsKeydown(evt, comments);
-  });
+  };
+
+  commentsLouder.addEventListener('click', handleUploadCommentsClick);
+  commentsLouder.addEventListener('keydown', handleUploadCommentsKeydown);
 };
 
 

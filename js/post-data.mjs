@@ -1,6 +1,6 @@
 import { clearForm } from './_utils.mjs';
 import { onOpenMessage } from './status-message.mjs';
-import { addPhotoCard } from './_API.mjs';
+import { addPhotoCard, baseUrl } from './_API.mjs';
 
 const imgEditForm = document.querySelector('.img-upload__form');
 
@@ -9,7 +9,7 @@ imgEditForm.addEventListener('submit', (evt) => {
   const loading = document.querySelector('#messages').content.querySelector('.img-upload__message').cloneNode(true);
   document.body.append(loading);
 
-  addPhotoCard('https://23.javascript.pages.academy/kekstagram', imgEditForm)
+  addPhotoCard(`${baseUrl}`, imgEditForm)
     .then(() => {
       const success = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
       document.body.append(success);

@@ -7,10 +7,12 @@ const addPhotoCard = async (url, formElem) => {
 };
 
 // ПОЛУЧЕНИЕ ДАННЫХ С СЕРВЕРА
-const getUserCards = async (url) => {
+const getPhotoCards = async (url) => {
   const res = await fetch(url);
 
   return res.json();
 };
 
-export { addPhotoCard, getUserCards };
+const baseUrl = 'https://23.javascript.pages.academy/kekstagram';
+
+export { addPhotoCard, getPhotoCards, baseUrl };

@@ -58,6 +58,7 @@ const onCardModal = (userCards) => {
       onUploudComments(userCard.comments);
     }
   });
+
   cardModalOpenList.addEventListener('keydown', (evt) => {
     if (isPressKey(evt, PressKey.ENTER) && evt.target.closest('.picture')) {
       createCardModal(userCards[evt.target.closest('.picture').id]);

@@ -1,10 +1,10 @@
-import { getUserCards } from './_API.mjs';
+import { getPhotoCards, baseUrl } from './_API.mjs';
 import { onOpenMessage } from './status-message.mjs';
 import { userCardsBuilder } from './card-list-dom.mjs';
 import { onCardModal } from './modal-card/open-close.mjs';
 
 document.addEventListener('DOMContentLoaded', () => {
-  getUserCards('https://23.javascript.pages.academy/kekstagram/data')
+  getPhotoCards(`${baseUrl}/data`)
     .then((userCards) => {
       userCardsBuilder(userCards);
       onCardModal(userCards);
