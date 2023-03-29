@@ -1,3 +1,5 @@
+import { hasArrayDuplicates } from '../_utils.mjs';
+
 // максимальная длинна хэш-тега включая решётку
 const MAX_LENGTH_HASHTAG = 20;
 // минимальная длинна хэш-тега включая решётку
@@ -16,17 +18,11 @@ hashTagField.addEventListener('blur', (evt) => {
   // массив регистронезависимых хэш-тегов разделённых 1 и более пробелом и обрезание пробелов по краям
   const hashTags = hashTagField.value.toLowerCase().trim().split(/\s+/);
 
-  // проверка хэш-тегов на дубли
-  const hasDuplicates = (arr) => {
-    const result = new Set(arr).size !== arr.length;
-    return result;
-  };
-
   if (hashTagField.value) {
     if (hashTags.length > MAX_NUMBER_HASHTAG) {
       requirements.push('нельзя указать больше пяти хэш-тегов');
     }
-    if (hasDuplicates(hashTags)) {
+    if (hasArrayDuplicates(hashTags)) {
       requirements.push('один и тот же хэш-тег не может быть использован дважды');
     }
 

@@ -11,6 +11,9 @@ const imgUpload = document.querySelector('.img-upload__input');
 // кнопка отправки данных на сервер
 const form = document.querySelector('.img-upload__form');
 
+const uploudImg = document.querySelector('#upload-file');
+const imgPreview = document.querySelector('.img-upload__preview > img');
+
 // обработчик на document для закрытия формы с клавиатуры через esc
 const onPopupEscPress = (evt) => {
   if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESC)) {
@@ -34,7 +37,6 @@ const onOpenUploadForm = () => {
   document.addEventListener('keydown', onPopupEscPress);
   imgEditFormCancel.addEventListener('click', onCloseUploadForm);
   imgEditFormCancel.addEventListener('keydown', onPopupEnterPress);
-
   form.addEventListener('submit', onCloseUploadForm);
 };
 
