@@ -1,4 +1,4 @@
-import { ImgFilters } from '../_utils.mjs';
+import { ImgFilters } from '../_data.mjs';
 
 // форма редактирования изображения
 const imgEditingForm = document.querySelector('.img-upload__form');
@@ -27,7 +27,7 @@ const onEffectsRadio = (value) => {
 
   // фильтры
   if (value === ImgFilters.origin.name) {
-    imgPreview.style.filter = null;
+    imgPreview.style.filter = 'none';
   }
   if (value === ImgFilters.chrome.name) {
     imgPreview.style.filter = `${ImgFilters.chrome.attribute}(${ImgFilters.chrome.max})`;
