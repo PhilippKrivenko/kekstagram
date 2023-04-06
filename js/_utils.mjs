@@ -31,16 +31,14 @@ function sortByField(field) {
 
 function debounce(f, ms) {
 
-  let isCooldown = false;
+  let timer;
 
   return function () {
-    if (isCooldown) { return; }
+    clearTimeout(timer);
 
-    f.apply(this, arguments);
-
-    isCooldown = true;
-
-    setTimeout(() => { isCooldown = false; }, ms);
+    timer = setTimeout(() => {
+      f.apply(this, arguments);
+    }, ms);
   };
 }
 
