@@ -1,14 +1,47 @@
-// ПОЛУЧИТЬ РАНДОМНОЕ ЧИСЛО
 const getRandomIntInclusive = (min, max) => {
   const minRnd = Math.ceil(min);
   const maxRnd = Math.floor(max);
   return Math.floor(Math.random() * (maxRnd - minRnd + 1)) + minRnd;
 };
 
-// ПОЛУЧИТЬ РАНДОМНЫЙ ЭЛЕМЕНТ МАССИВА
-const getRandomArrayIndex = (array) => array[getRandomIntInclusive(0, array.length - 1)];
+const getRandomArrayElement = (array) => array[getRandomIntInclusive(0, array.length - 1)];
 
-// ПЕРЕМЕШАТЬ МАССИВ
+const hasArrayDuplicates = (arr) => {
+  const result = new Set(arr).size !== arr.length;
+  return result;
+};
+
+const getRandomUniqueArrayElements = (array, numberElements) => {
+  const randomArrayElements = [];
+
+  while (randomArrayElements.length < numberElements) {
+    const randomElement = getRandomArrayElement(array);
+
+    if (randomArrayElements.includes(randomElement)) { continue; }
+
+    randomArrayElements.push(randomElement);
+  }
+
+  return randomArrayElements;
+};
+
+function sortByField(field) {
+  return (a, b) => a[field] < b[field] ? 1 : -1;
+}
+
+function debounce(f, ms) {
+
+  let timer;
+
+  return function () {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      f.apply(this, arguments);
+    }, ms);
+  };
+}
+
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -17,10 +50,8 @@ const shuffleArray = (array) => {
   return array;
 };
 
-// ПРОВЕРКА НА НАЖАТИЕ КЛАВИШИ
 const isPressKey = (evt, pressKey) => evt.key === pressKey;
 
-// ВОЗВРАЩЕНИЕ ДАННЫХ ФОРМЫ В ИСХОДНУЮ ФОРМУ
 const clearForm = () => {
   const scaleValue = document.querySelector('.scale__control--value');
   const effectLevelValue = document.querySelector('.effect-level__value');
@@ -67,4 +98,4 @@ const showComments = (numberComments, comments) => {
   commentList.append(commentListFragment);
 };
 
-export { getRandomArrayIndex, getRandomIntInclusive, shuffleArray, isPressKey, clearForm, showComments };
+export { getRandomArrayElement, debounce, sortByField, getRandomIntInclusive, shuffleArray, isPressKey, clearForm, showComments, hasArrayDuplicates, getRandomUniqueArrayElements };

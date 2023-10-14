@@ -9,23 +9,9 @@ const imgEditFormCancel = document.querySelector('.img-upload__cancel');
 // кнопка загрузки изображения
 const imgUpload = document.querySelector('.img-upload__input');
 // кнопка отправки данных на сервер
-const form = document.querySelector('.img-upload__form');
+const sendingFormButton = document.querySelector('.img-upload__form');
 
-// обработчик на document для закрытия формы с клавиатуры через esc
-const onPopupEscPress = (evt) => {
-  if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESC)) {
-    onCloseUploadForm();
-  }
-};
-// обработчик на кнопку закрытия формы с клавиатуры через enter
-const onPopupEnterPress = (evt) => {
-  if (isPressKey(evt, PressKey.ENTER)) {
-    onCloseUploadForm();
-  }
-};
-
-// обработчик открытия формы редактирования изображения
-const onOpenUploadForm = () => {
+function onOpenUploadForm() {
   imgEditFormCancel.focus();
 
   body.classList.add('modal-open');
@@ -34,12 +20,10 @@ const onOpenUploadForm = () => {
   document.addEventListener('keydown', onPopupEscPress);
   imgEditFormCancel.addEventListener('click', onCloseUploadForm);
   imgEditFormCancel.addEventListener('keydown', onPopupEnterPress);
+  sendingFormButton.addEventListener('submit', onCloseUploadForm);
+}
 
-  form.addEventListener('submit', onCloseUploadForm);
-};
-
-// обработчик закрытия формы редактирования изображения
-const onCloseUploadForm = () => {
+function onCloseUploadForm() {
   clearForm();
 
   body.classList.remove('modal-open');
@@ -48,8 +32,19 @@ const onCloseUploadForm = () => {
   document.removeEventListener('keydown', onPopupEscPress);
   imgEditFormCancel.removeEventListener('click', onCloseUploadForm);
   imgEditFormCancel.removeEventListener('keydown', onPopupEnterPress);
-  form.removeEventListener('submit', onCloseUploadForm);
-};
+  sendingFormButton.removeEventListener('submit', onCloseUploadForm);
+}
 
-// добавление обработчика события кнопке загрузки изображения
+function onPopupEscPress(evt) {
+  if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESC)) {
+    onCloseUploadForm();
+  }
+}
+
+function onPopupEnterPress(evt) {
+  if (isPressKey(evt, PressKey.ENTER)) {
+    onCloseUploadForm();
+  }
+}
+
 imgUpload.addEventListener('change', onOpenUploadForm);

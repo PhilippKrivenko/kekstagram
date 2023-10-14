@@ -1,6 +1,6 @@
 const userCardsBuilder = (userCards) => {
   // контейнер карточек
-  const userListElement = document.querySelector('.pictures');
+  const cardList = document.querySelector('.pictures');
   // шаблон карточек
   const userCardTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
@@ -18,7 +18,7 @@ const userCardsBuilder = (userCards) => {
     userListFragment.appendChild(userElement);
   });
 
-  userListElement.appendChild(userListFragment);
+  cardList.appendChild(userListFragment);
 };
 
 export { userCardsBuilder };

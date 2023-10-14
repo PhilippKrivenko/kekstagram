@@ -12,19 +12,7 @@ const cardModalElement = document.querySelector('.big-picture');
 const cardModalCloseElement = document.querySelector('.big-picture__cancel');
 
 
-const onPopupEscPress = (evt) => {
-  if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESC)) {
-    onCloseCardModal();
-  }
-};
-const onCloseCardModalEvent = (evt) => {
-  if (isPressKey(evt, PressKey.ENTER)) {
-    onCloseCardModal();
-  }
-};
-
-
-const onOpenCardModal = () => {
+function onOpenCardModal() {
   cardModalCloseElement.focus();
   cardModalElement.classList.remove('hidden');
   body.classList.add('modal-open');
@@ -32,9 +20,9 @@ const onOpenCardModal = () => {
   document.addEventListener('keydown', onPopupEscPress);
   cardModalCloseElement.addEventListener('click', onCloseCardModal);
   cardModalCloseElement.addEventListener('keydown', onCloseCardModalEvent);
-};
+}
 
-const onCloseCardModal = () => {
+function onCloseCardModal() {
   const commentsLouder = document.querySelector('.social__comments-loader');
 
   cardModalElement.classList.add('hidden');
@@ -45,10 +33,21 @@ const onCloseCardModal = () => {
   document.removeEventListener('keydown', onPopupEscPress);
   cardModalCloseElement.removeEventListener('click', onCloseCardModal);
   cardModalCloseElement.removeEventListener('keydown', onCloseCardModalEvent);
-};
+}
+function onPopupEscPress(evt) {
+  if (isPressKey(evt, PressKey.ESCAPE) || isPressKey(evt, PressKey.ESC)) {
+    onCloseCardModal();
+  }
+}
+
+function onCloseCardModalEvent(evt) {
+  if (isPressKey(evt, PressKey.ENTER)) {
+    onCloseCardModal();
+  }
+}
 
 
-const onCardModal = (userCards) => {
+function onCardModal(userCards) {
   cardModalOpenList.addEventListener('click', (evt) => {
     if (evt.target.closest('.picture')) {
       const userCard = userCards[evt.target.closest('.picture').id];
@@ -65,6 +64,6 @@ const onCardModal = (userCards) => {
       onOpenCardModal();
     }
   });
-};
+}
 
 export { onCardModal };
